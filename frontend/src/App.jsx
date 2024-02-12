@@ -5,6 +5,7 @@ import Registrar from './paginas/Registrar'
 import OlvidePassword from './paginas/OlvidePassword'
 import NuevoPassword from './paginas/NuevoPassword'
 import ConfirmarCuenta from './paginas/ConfirmarCuenta'
+import {AuthProvider} from './context/AuthProvider'
 
 
 
@@ -12,6 +13,7 @@ function App() {
   
   return (
     <BrowserRouter>
+     <AuthProvider> 
      <Routes>
       <Route path='/' element={<AuthLayout/>}>  
          <Route index element={<Login/>}/>
@@ -22,6 +24,7 @@ function App() {
 
       </Route>
      </Routes>
+     </AuthProvider>
     </BrowserRouter>
   )
 }
