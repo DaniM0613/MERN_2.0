@@ -6,7 +6,7 @@ const Proyectos = () => {
 
     const { proyectos } = useProyectos()
 
-   console.log(proyectos)
+  
     return (
         <>
          <h1 className="text-4xl font-black">Proyectos</h1>
@@ -15,7 +15,7 @@ const Proyectos = () => {
             {proyectos.length ?
               proyectos.map(proyecto => (
                 <PreviewProyecto
-                    key={proyectos._id}
+                    key={proyecto._id}
                     proyecto={proyecto}
                 />
 
