@@ -1,5 +1,7 @@
 import Proyecto from '../models/Proyecto.js'
 
+
+
 const obtenerProyectos = async (req, res) => {
     const proyectos = await Proyecto.find().where('creador').equals(req.usuario);
 
@@ -33,6 +35,7 @@ const obtenerProyecto = async (req, res) => {
         const error = new Error('Accion no Valida');
       return res.status(401).json({msg: error.message});
     }
+
     res.json(proyecto);
 };
 
@@ -42,7 +45,7 @@ const editarProyecto = async (req, res) => {
     const proyecto = await Proyecto.findById(id);
 
     if(!proyecto) {
-        const error = new Error('No econtrado');
+        const error = new Error('No encotrado');
         return res.status(404).json({msg: error.message});
     }
 
