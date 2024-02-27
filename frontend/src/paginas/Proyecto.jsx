@@ -2,13 +2,15 @@ import { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import useProyectos from '../hooks/useProyectos';
 import ModalFormularioTarea from '../components/ModalFormularioTarea';
+import ModalEliminarTarea from '../components/ModalEliminarTarea';
 import Tarea from '../components/Tarea';
+import Alerta from '../components/Alerta';
 
 
 const Proyecto = () => {
     const params = useParams();
 
-    const {obtenerProyecto, proyecto, cargando, handleModalTarea } = useProyectos();
+    const {obtenerProyecto, proyecto, cargando, handleModalTarea, alerta } = useProyectos();
   
     
     useEffect(() => {
@@ -17,9 +19,10 @@ const Proyecto = () => {
 
      const { nombre } = proyecto;
 
-     console.log(proyecto)
 
      if(cargando) return 'Cargando...'
+
+     const { msg } = alerta
   return (
     <> 
     <div className='flex justify-between'>
@@ -30,7 +33,7 @@ const Proyecto = () => {
         </svg>
         <Link
            to={`/proyectos/editar/${params.id}`}
-           className='uppercase font-bold'
+           className='uppercase font-bold text-gray-700 hover:text-black'
         >
         Editar</Link>
       </div>
@@ -43,11 +46,18 @@ const Proyecto = () => {
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
         </svg>
-Nueva Tarea
+          Nueva Tarea
         
       </button>
 
       <p className='font-bold text-xl mt-10'>Tareas del Proyecto </p>
+
+       <div className='flex justify-center'> 
+        <div className=' w-full md:w-1/3 lg:w-1/4'> 
+        {msg && <Alerta alerta={alerta}/>}
+        </div>
+       </div>
+
       <div className='bg-white shadow mt-10 rounded-lg'>
         {proyecto.tareas?.length ? 
         proyecto.tareas?.map( tarea => (
@@ -58,7 +68,18 @@ Nueva Tarea
         )) :
         <p className='text-center my-5 p-10'>No hay tareas en este proyecto</p> }
       </div>
+      
+      <div className='flex items-center justify-between'>
+      <p className='text-center my-5 p-10'>Colaboradores</p>
+        <Link
+          to={`/proyectos/nuevo-colaborador/${proyecto._id}`}
+          className='text-gray-700 hover:text-black uppercase font-bold'
+        >Añadir</Link>
+
+      </div>
+
       <ModalFormularioTarea />
+      <ModalEliminarTarea/>
     
     </>
     )

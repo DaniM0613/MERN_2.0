@@ -3,6 +3,7 @@ import Tarea from '../models/Tarea.js';
 
 const agregarTarea = async (req, res) => {
     const {proyecto} = req.body
+    delete req.body.id
 
     const existeProyecto = await Proyecto.findById(proyecto)
     
@@ -89,7 +90,7 @@ const eliminarTarea = async (req, res) => {
 
     try {
         await tarea.deleteOne()
-        res.json({msg: 'Tarea Eliminada'})
+        res.json({msg: 'La Tarea se elimino'})
     }catch(error){
         console.log(error)
     }
