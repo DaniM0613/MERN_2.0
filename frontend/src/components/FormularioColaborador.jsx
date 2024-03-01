@@ -22,7 +22,7 @@ const FormularioColaborador = () => {
     submitColaborador(email)
   }
 
-  const { msg} = alerta
+  const { msg } = alerta
 
 
   return (
@@ -41,7 +41,7 @@ const FormularioColaborador = () => {
             <input
               type='email'
               id='email'
-              placeholder='Emial del Usuario'
+              placeholder='Email del Usuario'
               className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md'
               value={email}
               onChange={e => setEmail(e.target.value)}
