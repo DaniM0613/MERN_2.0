@@ -5,30 +5,26 @@ import SideBar from '../components/SideBar'
 
 const RutaProtegida = () => {
 
-    const { auth, cargando} = useAuth()
+    const {auth, cargando } = useAuth()
 
     if(cargando) return 'Cargando...'
+
     return (
         <>
-       
-         {auth._id ?
-         (
-            <div className='bg-violet-400'>
-                <Header/>
+          { auth._id ?
+           (
+                <div className='bg-violet-400'>
+                    <Header/> 
+                <div className='md:flex md:min-h-screen'>
+                    <SideBar/>
+                <main  className='p-10 flex-1'>
+                    <Outlet/>
+                </main>
+                </div>
+                </div>
 
-            <div className='md:flex md:min-h-screen'>
-                <SideBar/>
-
-            <main className='p-10 flex-1'>
-                <Outlet/>
-
-            </main>
-            </div>
-
-            </div>
-         ) : <Navigate to= '/'/>}
+            ) : <Navigate to='/'/>}
         </>
     )
-
 }
 export default RutaProtegida
